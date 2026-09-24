@@ -847,6 +847,46 @@
     width: 100%;
     max-width: 320px;
 }
+
+/* ---------- MEJORAS INFO / CLIMA / SENDEROS ---------- */
+.weather-section { background:#0a0f13; }
+.weather-panel { max-width:950px; margin:0 auto; background:linear-gradient(135deg,#111a22,#0d1318); border:1px solid rgba(0,217,255,.18); border-radius:18px; padding:28px; box-shadow:0 12px 35px rgba(0,0,0,.35); }
+.weather-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+.weather-item { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:18px 12px; text-align:center; }
+.weather-item i { color:#00d9ff; font-size:24px; margin-bottom:9px; }
+.weather-value { display:block; font-size:22px; font-weight:800; color:#fff; }
+.weather-label { display:block; margin-top:5px; font-size:12px; color:#999; text-transform:uppercase; letter-spacing:.6px; }
+.weather-status { text-align:center; margin:0 0 20px; color:#00d9ff; font-size:19px; font-weight:700; }
+.forecast-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:18px; }
+.forecast-day { text-align:center; background:rgba(255,255,255,.035); border-radius:10px; padding:13px 8px; }
+.forecast-day strong { display:block; color:#fff; font-size:13px; }
+.forecast-icon { font-size:20px; margin:9px 0; color:#00d9ff; }
+.forecast-temp { font-size:13px; color:#ccc; }
+.before-section { background:#0d1114; }
+.before-grid,.trail-grid,.stats-grid { display:grid; gap:18px; }
+.before-grid { grid-template-columns:repeat(3,1fr); }
+.before-card { background:#11171b; border:1px solid #202a30; border-radius:14px; padding:24px 18px; text-align:center; }
+.before-card i { font-size:30px; color:#00d9ff; margin-bottom:12px; }
+.before-card h3 { color:#fff; font-size:17px; margin-bottom:8px; }
+.before-card p { color:#aaa; line-height:1.5; font-size:14px; }
+.trail-section { background:#0f141a; }
+.trail-grid { grid-template-columns:repeat(2,1fr); max-width:1000px; margin:auto; }
+.trail-card { background:#11171b; border:1px solid #202a30; border-radius:14px; padding:23px; }
+.trail-card h3 { color:#00d9ff; margin-bottom:8px; font-size:20px; }
+.trail-card p { color:#aaa; line-height:1.55; font-size:14px; }
+.trail-tag { display:inline-block; margin:10px 0 15px; padding:5px 10px; border-radius:20px; background:rgba(255,255,255,.06); font-size:12px; font-weight:700; }
+.trail-tag.advanced { color:#ff5555; }.trail-tag.medium { color:#ffad33; }
+.trail-button,.location-button { display:inline-flex; align-items:center; gap:7px; margin-top:12px; padding:10px 16px; border-radius:22px; background:#00d9ff; color:#000; text-decoration:none; font-weight:800; font-size:13px; }
+.location-section-enhanced { background:#0a0f13; }
+.location-box { max-width:850px; margin:auto; background:#11171b; border:1px solid #202a30; border-radius:16px; padding:28px; text-align:center; }
+.location-box p { color:#aaa; line-height:1.6; }
+.location-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
+.location-button.trail { background:#1a222d; color:#00d9ff; border:1px solid rgba(0,217,255,.35); }
+.stats-grid { grid-template-columns:repeat(4,1fr); max-width:900px; margin:auto; }
+.stat { text-align:center; background:#11171b; border:1px solid #202a30; border-radius:14px; padding:22px 10px; }
+.stat strong { display:block; font-size:30px; color:#00d9ff; }.stat span { color:#aaa; font-size:13px; }
+.map-fallback { text-align:center; padding:14px 8px 4px; }.map-fallback p { color:#999; font-size:13px; margin-bottom:9px; }.map-fallback a { display:inline-flex; align-items:center; gap:7px; padding:9px 15px; border-radius:20px; background:#00d9ff; color:#000; text-decoration:none; font-weight:800; font-size:13px; }
+@media(max-width:700px){ .weather-grid,.before-grid,.stats-grid { grid-template-columns:repeat(2,1fr); }.forecast-grid { grid-template-columns:repeat(5,minmax(90px,1fr)); overflow-x:auto; }.trail-grid { grid-template-columns:1fr; }.weather-panel { padding:18px 12px; }.weather-item { padding:14px 8px; }.weather-value { font-size:19px; }.location-box { padding:22px 15px; } }
     </style>
 </head>
 
@@ -872,6 +912,8 @@
         <a href="#videos">Videos</a>
         <a href="#fotos">Fotos</a>
         <a href="#senderos">Senderos</a>
+        <a href="#clima">Clima</a>
+        <a href="#antes-de-ir">Antes de ir</a>
         <a href="https://www.google.com/maps?q=-32.90920,-68.91435" target="_blank" rel="noopener noreferrer">Ubicación</a>
     </div>
 </nav>
@@ -1136,6 +1178,50 @@
 
 </section>
 
+<!-- CLIMA DETALLADO -->
+<section class="weather-section" id="clima">
+  <div class="section-title"><h2>Clima en <span>Dique Frías</span></h2><p>Condiciones actuales y pronóstico para planificar la salida.</p></div>
+  <div class="weather-panel">
+    <div class="weather-status" id="weatherStatus">Cargando clima...</div>
+    <div class="weather-grid">
+      <div class="weather-item"><i class="fa-solid fa-temperature-half"></i><span class="weather-value" id="detailTemp">—</span><span class="weather-label">Temperatura</span></div>
+      <div class="weather-item"><i class="fa-solid fa-temperature-three-quarters"></i><span class="weather-value" id="detailFeels">—</span><span class="weather-label">Sensación</span></div>
+      <div class="weather-item"><i class="fa-solid fa-wind"></i><span class="weather-value" id="detailWind">—</span><span class="weather-label">Viento</span></div>
+      <div class="weather-item"><i class="fa-solid fa-droplet"></i><span class="weather-value" id="detailHumidity">—</span><span class="weather-label">Humedad</span></div>
+    </div>
+    <div class="forecast-grid" id="forecastGrid"></div>
+  </div>
+</section>
+
+
+
+<!-- SENDEROS DESTACADOS -->
+<section class="trail-section">
+  <div class="section-title"><h2>Senderos <span>destacados</span></h2><p>Algunos de los recorridos que aparecen en los videos de la página.</p></div>
+  <div class="trail-grid">
+    <article class="trail-card"><h3>Cuarentón</h3><span class="trail-tag advanced">Dificultad: Avanzada</span><p>Bajada tipo tobogán, angosta al comienzo y con terreno suelto entre paredes de roca.</p><a class="trail-button" href="https://www.trailforks.com/trails/la-bajada-del-pablo/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Trailforks</a></article>
+    <article class="trail-card"><h3>Filo del Talco</h3><span class="trail-tag medium">Dificultad: Media</span><p>Recorrido por la cresta del sendero con sectores fluidos y vistas abiertas.</p><a class="trail-button" href="https://www.trailforks.com/trails/filo-del-talco/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Trailforks</a></article>
+    <article class="trail-card"><h3>Babilonia</h3><span class="trail-tag advanced">Dificultad: Avanzada</span><p>Bajada angosta donde el equilibrio y el manejo son importantes.</p><a class="trail-button" href="https://www.trailforks.com/trails/babilonia-934360/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Trailforks</a></article>
+    <article class="trail-card"><h3>Sendero Luminoso</h3><span class="trail-tag medium">Dificultad: Media</span><p>Sendero largo y fluido utilizado por ciclistas y motos según la descripción de esta página.</p><a class="trail-button" href="https://www.trailforks.com/trails/filo-de-la-ipoxia-o-sendero-luminoso/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Trailforks</a></article>
+  </div>
+</section>
+
+<!-- CÓMO LLEGAR / ESTADÍSTICAS -->
+<section class="location-section-enhanced">
+  <div class="section-title"><h2>Cómo <span>llegar</span></h2><p>Ubicación del Dique Frías y acceso rápido a los mapas.</p></div>
+  <div class="location-box">
+    <p><strong>Dique Frías, Mendoza</strong><br>Coordenadas de referencia: -32.90920, -68.91435</p>
+    <div class="location-actions">
+      <a class="location-button" href="https://www.google.com/maps?q=-32.90920,-68.91435" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-map-location-dot"></i> Abrir en Google Maps</a>
+      <a class="location-button trail" href="https://www.trailforks.com/map/?nearby=1&activitytype=1&z=14.0&lat=-32.90920&lon=-68.91435&content=trails,labels,region,poi,directory,polygon,nst,eventpremium" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-map"></i> Ver senderos en Trailforks</a>
+    </div>
+  </div>
+ 
+  <div class="stats-grid">
+    <div class="stat"><strong>15</strong><span>Fotos</span></div><div class="stat"><strong>10</strong><span>Videos</span></div><div class="stat"><strong>MTB</strong><span>Senderos</span></div><div class="stat"><strong>⛰️</strong><span>Montaña</span></div>
+  </div>
+</section>
+
 <!-- SENDEROS -->
 <section id="senderos">
 
@@ -1213,6 +1299,7 @@
             </div>
 
             <iframe src="https://www.trailforks.com/widgets/region_map/?rid=23624&z=13&m=trailforks&w=100%&h=450" width="100%" height="450" frameborder="0" scrolling="no" style="border-radius: 8px; display: block;"></iframe>
+            <div class="map-fallback"><p>Si el mapa interactivo no carga, podés abrir la red de senderos directamente en Trailforks.</p><a href="https://www.trailforks.com/map/?nearby=1&activitytype=1&z=14.0&lat=-32.90920&lon=-68.91435&content=trails,labels,region,poi,directory,polygon,nst,eventpremium" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-up-right-from-square"></i> Abrir mapa completo en Trailforks</a></div>
         </div>
     </div>
 </section>
@@ -1407,35 +1494,39 @@ const weatherLocation = document.getElementById("navWeather");
 
 async function actualizarClima() {
     try {
-        const url = "https://api.open-meteo.com/v1/forecast?latitude=-32.90920&longitude=-68.91435&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=America%2FArgentina%2FMendoza";
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=-32.90920&longitude=-68.91435&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,sunrise,sunset&forecast_days=5&timezone=America%2FArgentina%2FMendoza";
         const response = await fetch(url, { cache: "no-store" });
         if (!response.ok) throw new Error("No se pudo obtener el clima");
         const data = await response.json();
-
-        const temperatura = Math.round(data.current.temperature_2m);
-        const sensacion = Math.round(data.current.apparent_temperature);
-        const viento = Math.round(data.current.wind_speed_10m);
-        const codigo = data.current.weather_code;
-        const max = Math.round(data.daily.temperature_2m_max[0]);
-        const min = Math.round(data.daily.temperature_2m_min[0]);
-
+        const c = data.current, d = data.daily;
+        const temperatura = Math.round(c.temperature_2m);
+        const sensacion = Math.round(c.apparent_temperature);
+        const viento = Math.round(c.wind_speed_10m);
+        const humedad = Math.round(c.relative_humidity_2m);
+        const codigo = c.weather_code;
+        const estado = obtenerEstadoClima(codigo);
+        const dir = obtenerDireccionViento(c.wind_direction_10m);
         weatherTemp.textContent = `${temperatura}°C`;
-        const estadoClima = obtenerEstadoClima(codigo);
-        weatherIcon.className = `fa-solid ${estadoClima.icono}`;
-        weatherIcon.title = estadoClima.texto;
-        weatherLocation.title = `Dique Frías · ${estadoClima.texto} · Sensación ${sensacion}°C · Mín ${min}°C / Máx ${max}°C · Viento ${viento} km/h`;
-
-        // MODO DÍA/NOCHE SEGÚN SALIDA Y PUESTA DE SOL REALES
-        const ahora = new Date();
-        const amanecer = new Date(data.daily.sunrise[0]);
-        const atardecer = new Date(data.daily.sunset[0]);
-        const esDeNoche = ahora < amanecer || ahora > atardecer;
-        document.body.classList.toggle("night-mode", esDeNoche);
+        weatherIcon.className = `fa-solid ${estado.icono}`;
+        weatherIcon.title = estado.texto;
+        weatherLocation.title = `Dique Frías · ${estado.texto} · Sensación ${sensacion}°C · Humedad ${humedad}% · Viento ${viento} km/h ${dir}`;
+        const status = document.getElementById("weatherStatus");
+        if (status) status.innerHTML = `<i class="fa-solid ${estado.icono}"></i> ${estado.texto}`;
+        const set = (id,val) => { const el=document.getElementById(id); if(el) el.textContent=val; };
+        set("detailTemp", `${temperatura}°C`); set("detailFeels", `${sensacion}°C`); set("detailWind", `${viento} km/h ${dir}`); set("detailHumidity", `${humedad}%`);
+        const fg=document.getElementById("forecastGrid");
+        if(fg){ fg.innerHTML=""; d.time.forEach((fecha,i)=>{ const e=obtenerEstadoClima(d.weather_code[i]); const dt=new Date(`${fecha}T12:00:00`); const nombre=dt.toLocaleDateString("es-AR",{weekday:"short",day:"numeric"}); fg.innerHTML += `<div class="forecast-day"><strong>${nombre}</strong><div class="forecast-icon"><i class="fa-solid ${e.icono}"></i></div><div class="forecast-temp">${Math.round(d.temperature_2m_max[i])}° / ${Math.round(d.temperature_2m_min[i])}°</div></div>`; }); }
+        const ahora = new Date(), amanecer = new Date(d.sunrise[0]), atardecer = new Date(d.sunset[0]);
+        document.body.classList.toggle("night-mode", ahora < amanecer || ahora > atardecer);
     } catch (error) {
-        weatherTemp.textContent = "—°C";
-        weatherIcon.className = "fa-solid fa-cloud";
-        weatherIcon.title = "Clima no disponible";
+        weatherTemp.textContent = "—°C"; weatherIcon.className = "fa-solid fa-cloud"; weatherIcon.title = "Clima no disponible";
+        const status=document.getElementById("weatherStatus"); if(status) status.textContent="Clima no disponible en este momento";
     }
+}
+
+function obtenerDireccionViento(grados) {
+    const dirs=["N","NE","E","SE","S","SO","O","NO"];
+    return dirs[Math.round(grados/45)%8];
 }
 
 function obtenerEstadoClima(codigo) {
