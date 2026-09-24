@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dique Frías | Mendoza</title>
+    <meta name="description" content="Dique Frías, Mendoza: senderos de MTB y trekking, videos, fotos, mapa de senderos y clima en tiempo real. Naturaleza, montaña y aventura.">
+    <meta property="og:title" content="Dique Frías | Mendoza">
+    <meta property="og:description" content="Naturaleza, montaña, senderos y aventura en Mendoza. Videos, fotos y mapa de senderos del Dique Frías.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="dique-frias.jpg">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏔️</text></svg>">
+    <link rel="preload" as="image" href="dique-frias.jpg" fetchpriority="high">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -63,6 +70,15 @@
             color: #00d9ff;
         }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
         .nav-weather {
             display: flex;
             align-items: center;
@@ -86,6 +102,10 @@
             align-items: center; justify-content: center; text-align: center; overflow: hidden;
             background: linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,.08) 42%, rgba(0,0,0,.62) 100%), url("dique-frias.jpg");
             background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
+            transition: background 1.2s ease;
+        }
+        body.night-mode .hero {
+            background: linear-gradient(180deg, rgba(5,10,25,.55) 0%, rgba(5,10,25,.45) 42%, rgba(5,10,25,.82) 100%), url("dique-frias.jpg");
         }
         .hero-content { max-width: 950px; padding: 30px; position: relative; z-index: 2; text-shadow: 0 3px 18px rgba(0,0,0,.8); }
         .hero h1 { font-size: clamp(48px, 8vw, 100px); text-transform: uppercase; letter-spacing: 7px; font-weight: 800; animation: heroTitleIn 1s ease-out both; }
@@ -726,6 +746,25 @@
 
             nav .links {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(0,0,0,0.95);
+                padding: 15px 7% 20px;
+            }
+
+            nav .links.show {
+                display: flex;
+            }
+
+            nav .links a {
+                margin: 10px 0;
+            }
+
+            .menu-toggle {
+                display: block;
             }
 
             section {
@@ -818,18 +857,22 @@
     <div class="logo">
         DIQUE <span>FRÍAS</span>
     </div>
-<link rel="preload" as="image" href="dique-frias.jpg">
+
     <div class="nav-weather" id="navWeather">
         <i class="fa-solid fa-sun" id="weatherIcon"></i>
         <span id="weatherTemp">Cargando...</span>
     </div>
 
-    <div class="links">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="links" id="navLinks">
         <a href="#inicio">Inicio</a>
         <a href="#videos">Videos</a>
         <a href="#fotos">Fotos</a>
         <a href="#senderos">Senderos</a>
-        <a href="#ubicacion">Ubicación</a>
+        <a href="https://www.google.com/maps?q=-32.90920,-68.91435" target="_blank" rel="noopener noreferrer">Ubicación</a>
     </div>
 </nav>
 
@@ -874,20 +917,20 @@
         <button class="photo-carousel-btn photo-prev" id="photoPrev">&#10094;</button>
         
         <div class="photo-slide active"><img src="dique frias2.jpeg" alt="Dique Frías 1" class="zoom-img"></div>
-        <div class="photo-slide"><img src="Dique frias3.jpeg" alt="Dique Frías 2" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 4.jpeg" alt="Dique Frías 3" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 5.jpeg" alt="Dique Frías 4" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 6.jpeg" alt="Dique Frías 5" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 7.jpeg" alt="Dique Frías 6" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 8.jpeg" alt="Dique Frías 7" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 9.jpeg" alt="Dique Frías 8" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 10.jpeg" alt="Dique Frías 9" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 11.jpeg" alt="Dique Frías 10" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 12.jpeg" alt="Dique Frías 11" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 13.jpeg" alt="Dique Frías 12" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 14.jpg" alt="Dique Frías 13" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 15.jpg" alt="Dique Frías 14" class="zoom-img"></div>
-        <div class="photo-slide"><img src="dique frias 16.jpeg" alt="Dique Frías 15" class="zoom-img"></div>
+        <div class="photo-slide"><img src="Dique frias3.jpeg" alt="Dique Frías 2" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 4.jpeg" alt="Dique Frías 3" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 5.jpeg" alt="Dique Frías 4" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 6.jpeg" alt="Dique Frías 5" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 7.jpeg" alt="Dique Frías 6" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 8.jpeg" alt="Dique Frías 7" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 9.jpeg" alt="Dique Frías 8" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 10.jpeg" alt="Dique Frías 9" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 11.jpeg" alt="Dique Frías 10" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 12.jpeg" alt="Dique Frías 11" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 13.jpeg" alt="Dique Frías 12" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 14.jpg" alt="Dique Frías 13" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 15.jpg" alt="Dique Frías 14" loading="lazy" decoding="async" class="zoom-img"></div>
+        <div class="photo-slide"><img src="dique frias 16.jpeg" alt="Dique Frías 15" loading="lazy" decoding="async" class="zoom-img"></div>
 
         <button class="photo-carousel-btn photo-next" id="photoNext">&#10095;</button>
         <div class="photo-counter" id="photoCounter"></div>
@@ -930,7 +973,7 @@
         <!-- VIDEO 2 -->
         <div class="video-slide" data-youtube="oswZGrtjkkg">
             <div class="video-thumb-container">
-                <img src="Filo del talco.png" alt="Filo del Talco" class="video-poster">
+                <img loading="lazy" decoding="async" src="Filo del talco.png" alt="Filo del Talco" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -948,7 +991,7 @@
         <!-- VIDEO 3 -->
         <div class="video-slide" data-youtube="UfTfSwfCJJU">
             <div class="video-thumb-container">
-                <img src="surrealista.jpeg" alt="Bajada Surrealista" class="video-poster">
+                <img loading="lazy" decoding="async" src="surrealista.jpeg" alt="Bajada Surrealista" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -966,7 +1009,7 @@
         <!-- VIDEO 4 -->
         <div class="video-slide" data-youtube="i8fmFIQEmY0">
             <div class="video-thumb-container">
-                <img src="cuerno.jpeg" alt="El Cuerno" class="video-poster">
+                <img loading="lazy" decoding="async" src="cuerno.jpeg" alt="El Cuerno" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -984,7 +1027,7 @@
         <!-- VIDEO 5 -->
         <div class="video-slide" data-youtube="FZZPCVcnJVk">
             <div class="video-thumb-container">
-                <img src="canal de parto.jpg" alt="Canal de Parto" class="video-poster foto-alejada">
+                <img loading="lazy" decoding="async" src="canal de parto.jpg" alt="Canal de Parto" class="video-poster foto-alejada">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1002,7 +1045,7 @@
         <!-- VIDEO 6 -->
         <div class="video-slide" data-youtube="3Zf-EpXPfM8">
             <div class="video-thumb-container">
-                <img src="dique frias2.jpeg" alt="Sendero 6" class="video-poster">
+                <img loading="lazy" decoding="async" src="dique frias2.jpeg" alt="Sendero 6" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1020,7 +1063,7 @@
         <!-- VIDEO 7 -->
         <div class="video-slide" data-youtube="wJ5aCEm697w">
             <div class="video-thumb-container">
-                <img src="filo-sur.jpeg" alt="Sendero 7" class="video-poster">
+                <img loading="lazy" decoding="async" src="filo-sur.jpeg" alt="Sendero 7" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1038,7 +1081,7 @@
         <!-- VIDEO 8 -->
         <div class="video-slide" data-youtube="RNTfsXc4AhM">
             <div class="video-thumb-container">
-                <img src="dique frias 17.jpeg" alt="Sendero 8" class="video-poster">
+                <img loading="lazy" decoding="async" src="dique frias 17.jpeg" alt="Sendero 8" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1056,7 +1099,7 @@
         <!-- VIDEO 9 -->
         <div class="video-slide" data-youtube="iOvLERU8Jt0">
             <div class="video-thumb-container">
-                <img src="dique frias 18.jpg" alt="Sendero 9" class="video-poster">
+                <img loading="lazy" decoding="async" src="dique frias 18.jpg" alt="Sendero 9" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1074,7 +1117,7 @@
         <!-- VIDEO 10 -->
         <div class="video-slide" data-youtube="rFEbgO9BtmY">
             <div class="video-thumb-container">
-                <img src="dique frias 19.jpg" alt="Sendero 10" class="video-poster">
+                <img loading="lazy" decoding="async" src="dique frias 19.jpeg" alt="Sendero 10" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1199,7 +1242,7 @@
     </p>
 
     <!-- BOTÓN DE WHATSAPP -->
-    <a href="https://chat.whatsapp.com/EfFt1CXzhnqF54CHReAU2i" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background-color: #25d366; color: #ffffff; font-weight: 800; font-size: 1rem; padding: 14px 28px; border-radius: 30px; text-decoration: none; width: 100%; max-width: 360px; box-sizing: border-box;">
+    <a href="https://wa.me/TU_NUMERO" target="_blank" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; background-color: #25d366; color: #ffffff; font-weight: 800; font-size: 1rem; padding: 14px 28px; border-radius: 30px; text-decoration: none; width: 100%; max-width: 360px; box-sizing: border-box;">
         <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Enterate en el grupo de WhatsApp
     </a>
 
@@ -1233,6 +1276,20 @@
 
 <!-- JAVASCRIPT -->
 <script>
+// MENÚ MOBILE
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+if (menuToggle && navLinks) {
+    menuToggle.onclick = () => {
+        const isOpen = navLinks.classList.toggle("show");
+        menuToggle.setAttribute("aria-expanded", isOpen);
+    };
+    navLinks.querySelectorAll("a").forEach(a => a.onclick = () => {
+        navLinks.classList.remove("show");
+        menuToggle.setAttribute("aria-expanded", "false");
+    });
+}
+
 // CARRUSEL DE VIDEOS
 const videoSlides = document.querySelectorAll(".video-slide");
 const videoDotsContainer = document.getElementById("videoDots");
@@ -1350,17 +1407,30 @@ const weatherLocation = document.getElementById("navWeather");
 
 async function actualizarClima() {
     try {
-        const url = "https://api.open-meteo.com/v1/forecast?latitude=-32.90920&longitude=-68.91435&current=temperature_2m,weather_code&timezone=America%2FArgentina%2FMendoza";
+        const url = "https://api.open-meteo.com/v1/forecast?latitude=-32.90920&longitude=-68.91435&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset&timezone=America%2FArgentina%2FMendoza";
         const response = await fetch(url, { cache: "no-store" });
         if (!response.ok) throw new Error("No se pudo obtener el clima");
         const data = await response.json();
+
         const temperatura = Math.round(data.current.temperature_2m);
+        const sensacion = Math.round(data.current.apparent_temperature);
+        const viento = Math.round(data.current.wind_speed_10m);
         const codigo = data.current.weather_code;
+        const max = Math.round(data.daily.temperature_2m_max[0]);
+        const min = Math.round(data.daily.temperature_2m_min[0]);
+
         weatherTemp.textContent = `${temperatura}°C`;
         const estadoClima = obtenerEstadoClima(codigo);
         weatherIcon.className = `fa-solid ${estadoClima.icono}`;
         weatherIcon.title = estadoClima.texto;
-        weatherLocation.title = `Dique Frías · ${estadoClima.texto} · Actualizado ahora`;
+        weatherLocation.title = `Dique Frías · ${estadoClima.texto} · Sensación ${sensacion}°C · Mín ${min}°C / Máx ${max}°C · Viento ${viento} km/h`;
+
+        // MODO DÍA/NOCHE SEGÚN SALIDA Y PUESTA DE SOL REALES
+        const ahora = new Date();
+        const amanecer = new Date(data.daily.sunrise[0]);
+        const atardecer = new Date(data.daily.sunset[0]);
+        const esDeNoche = ahora < amanecer || ahora > atardecer;
+        document.body.classList.toggle("night-mode", esDeNoche);
     } catch (error) {
         weatherTemp.textContent = "—°C";
         weatherIcon.className = "fa-solid fa-cloud";
