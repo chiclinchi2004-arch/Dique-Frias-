@@ -14,11 +14,9 @@
     <link rel="preload" as="image" href="dique-frias.webp" fetchpriority="high">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 <style>
-* {
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -32,6 +30,7 @@
             font-family: Arial, Helvetica, sans-serif;
             background: #080b0d;
             color: white;
+            padding-top: 70px; /* Previene superposición por nav fijo */
         }
         /* ---------- NAVBAR ---------- */
 
@@ -99,7 +98,7 @@
         /* ---------- HERO ---------- */
 
         .hero {
-            height: 100vh; min-height: 650px; position: relative; display: flex;
+            height: calc(100vh - 70px); min-height: 650px; position: relative; display: flex;
             align-items: center; justify-content: center; text-align: center; overflow: hidden;
             background: linear-gradient(180deg, rgba(0,0,0,.12) 0%, rgba(0,0,0,.08) 42%, rgba(0,0,0,.62) 100%), url("dique-frias.webp");
             background-color: #05080a;
@@ -802,94 +801,93 @@
             .video-close { top: 10px; right: 15px; font-size: 42px; }
         }
         .card-box {
-    background-color: #0f161c; /* Fondo gris azulado idéntico al de Instagram */
-    border: 1px solid #1a2631;    /* Borde fino sutil */
-    border-radius: 16px;          /* Bordes suavizados */
-    padding: 30px 20px;
-    max-width: 500px;             /* Ancho idéntico a las demás tarjetas */
-    margin: 20px auto;
-    text-align: center;
-}
+            background-color: #0f161c;
+            border: 1px solid #1a2631;
+            border-radius: 16px;
+            padding: 30px 20px;
+            max-width: 500px;
+            margin: 20px auto;
+            text-align: center;
+        }
 
-/* Ajuste de espaciado para los botones dentro de la tarjeta */
-.card-box .btn-container {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-top: 20px;
-    align-items: center;
-}
+        .card-box .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 20px;
+            align-items: center;
+        }
 
-.btn-llegar {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background-color: #00d9ff;
-    color: #000;
-    font-weight: 700;
-    padding: 12px 24px;
-    border-radius: 25px;
-    text-decoration: none;
-    width: 100%;
-    max-width: 320px;
-}
+        .btn-llegar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #00d9ff;
+            color: #000;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            width: 100%;
+            max-width: 320px;
+        }
 
-.btn-whatsapp {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    background-color: #25d366;
-    color: #fff;
-    font-weight: 700;
-    padding: 12px 24px;
-    border-radius: 25px;
-    text-decoration: none;
-    width: 100%;
-    max-width: 320px;
-}
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: #25d366;
+            color: #fff;
+            font-weight: 700;
+            padding: 12px 24px;
+            border-radius: 25px;
+            text-decoration: none;
+            width: 100%;
+            max-width: 320px;
+        }
 
-/* ---------- MEJORAS INFO / CLIMA / SENDEROS ---------- */
-.weather-section { background:#0a0f13; }
-.weather-panel { max-width:950px; margin:0 auto; background:linear-gradient(135deg,#111a22,#0d1318); border:1px solid rgba(0,217,255,.18); border-radius:18px; padding:28px; box-shadow:0 12px 35px rgba(0,0,0,.35); }
-.weather-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-.weather-item { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:18px 12px; text-align:center; }
-.weather-item i { color:#00d9ff; font-size:24px; margin-bottom:9px; }
-.weather-value { display:block; font-size:22px; font-weight:800; color:#fff; }
-.weather-label { display:block; margin-top:5px; font-size:12px; color:#999; text-transform:uppercase; letter-spacing:.6px; }
-.weather-status { text-align:center; margin:0 0 20px; color:#00d9ff; font-size:19px; font-weight:700; }
-.forecast-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:18px; }
-.forecast-day { text-align:center; background:rgba(255,255,255,.035); border-radius:10px; padding:13px 8px; }
-.forecast-day strong { display:block; color:#fff; font-size:13px; }
-.forecast-icon { font-size:20px; margin:9px 0; color:#00d9ff; }
-.forecast-temp { font-size:13px; color:#ccc; }
-.before-section { background:#0d1114; }
-.before-grid,.trail-grid,.stats-grid { display:grid; gap:18px; }
-.before-grid { grid-template-columns:repeat(3,1fr); }
-.before-card { background:#11171b; border:1px solid #202a30; border-radius:14px; padding:24px 18px; text-align:center; }
-.before-card i { font-size:30px; color:#00d9ff; margin-bottom:12px; }
-.before-card h3 { color:#fff; font-size:17px; margin-bottom:8px; }
-.before-card p { color:#aaa; line-height:1.5; font-size:14px; }
-.trail-section { background:#0f141a; }
-.trail-grid { grid-template-columns:repeat(2,1fr); max-width:1000px; margin:auto; }
-.trail-card { background:#11171b; border:1px solid #202a30; border-radius:14px; padding:23px; }
-.trail-card h3 { color:#00d9ff; margin-bottom:8px; font-size:20px; }
-.trail-card p { color:#aaa; line-height:1.55; font-size:14px; }
-.trail-tag { display:inline-block; margin:10px 0 15px; padding:5px 10px; border-radius:20px; background:rgba(255,255,255,.06); font-size:12px; font-weight:700; }
-.trail-tag.advanced { color:#ff5555; }.trail-tag.medium { color:#ffad33; }
-.trail-button,.location-button { display:inline-flex; align-items:center; gap:7px; margin-top:12px; padding:10px 16px; border-radius:22px; background:#00d9ff; color:#000; text-decoration:none; font-weight:800; font-size:13px; }
-.location-section-enhanced { background:#0a0f13; }
-.location-box { max-width:850px; margin:auto; background:#11171b; border:1px solid #202a30; border-radius:16px; padding:28px; text-align:center; }
-.location-box p { color:#aaa; line-height:1.6; }
-.location-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
-.location-button.trail { background:#1a222d; color:#00d9ff; border:1px solid rgba(0,217,255,.35); }
-.stats-grid { grid-template-columns:repeat(4,1fr); max-width:900px; margin:auto; }
-.stat { text-align:center; background:#11171b; border:1px solid #202a30; border-radius:14px; padding:22px 10px; }
-.stat strong { display:block; font-size:30px; color:#00d9ff; }.stat span { color:#aaa; font-size:13px; }
-.map-fallback { text-align:center; padding:14px 8px 4px; }.map-fallback p { color:#999; font-size:13px; margin-bottom:9px; }.map-fallback a { display:inline-flex; align-items:center; gap:7px; padding:9px 15px; border-radius:20px; background:#00d9ff; color:#000; text-decoration:none; font-weight:800; font-size:13px; }
-@media(max-width:700px){ .weather-grid,.before-grid,.stats-grid { grid-template-columns:repeat(2,1fr); }.forecast-grid { grid-template-columns:repeat(5,minmax(90px,1fr)); overflow-x:auto; }.trail-grid { grid-template-columns:1fr; }.weather-panel { padding:18px 12px; }.weather-item { padding:14px 8px; }.weather-value { font-size:19px; }.location-box { padding:22px 15px; } }
-    </style>
+        /* ---------- MEJORAS INFO / CLIMA / SENDEROS ---------- */
+        .weather-section { background:#0a0f13; }
+        .weather-panel { max-width:950px; margin:0 auto; background:linear-gradient(135deg,#111a22,#0d1318); border:1px solid rgba(0,217,255,.18); border-radius:18px; padding:28px; box-shadow:0 12px 35px rgba(0,0,0,.35); }
+        .weather-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+        .weather-item { background:rgba(255,255,255,.045); border:1px solid rgba(255,255,255,.06); border-radius:12px; padding:18px 12px; text-align:center; }
+        .weather-item i { color:#00d9ff; font-size:24px; margin-bottom:9px; }
+        .weather-value { display:block; font-size:22px; font-weight:800; color:#fff; }
+        .weather-label { display:block; margin-top:5px; font-size:12px; color:#999; text-transform:uppercase; letter-spacing:.6px; }
+        .weather-status { text-align:center; margin:0 0 20px; color:#00d9ff; font-size:19px; font-weight:700; }
+        .forecast-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin-top:18px; }
+        .forecast-day { text-align:center; background:rgba(255,255,255,.035); border-radius:10px; padding:13px 8px; }
+        .forecast-day strong { display:block; color:#fff; font-size:13px; }
+        .forecast-icon { font-size:20px; margin:9px 0; color:#00d9ff; }
+        .forecast-temp { font-size:13px; color:#ccc; }
+        .before-section { background:#0d1114; }
+        .before-grid,.trail-grid,.stats-grid { display:grid; gap:18px; }
+        .before-grid { grid-template-columns:repeat(3,1fr); }
+        .before-card { background:#11171b; border:1px solid #202a30; border-radius:14px; padding:24px 18px; text-align:center; }
+        .before-card i { font-size:30px; color:#00d9ff; margin-bottom:12px; }
+        .before-card h3 { color:#fff; font-size:17px; margin-bottom:8px; }
+        .before-card p { color:#aaa; line-height:1.5; font-size:14px; }
+        .trail-section { background:#0f141a; }
+        .trail-grid { grid-template-columns:repeat(2,1fr); max-width:1000px; margin:auto; }
+        .trail-card { background:#11171b; border:1px solid #202a30; border-radius:14px; padding:23px; }
+        .trail-card h3 { color:#00d9ff; margin-bottom:8px; font-size:20px; }
+        .trail-card p { color:#aaa; line-height:1.55; font-size:14px; }
+        .trail-tag { display:inline-block; margin:10px 0 15px; padding:5px 10px; border-radius:20px; background:rgba(255,255,255,.06); font-size:12px; font-weight:700; }
+        .trail-tag.advanced { color:#ff5555; }.trail-tag.medium { color:#ffad33; }
+        .trail-button,.location-button { display:inline-flex; align-items:center; gap:7px; margin-top:12px; padding:10px 16px; border-radius:22px; background:#00d9ff; color:#000; text-decoration:none; font-weight:800; font-size:13px; }
+        .location-section-enhanced { background:#0a0f13; }
+        .location-box { max-width:850px; margin:auto; background:#11171b; border:1px solid #202a30; border-radius:16px; padding:28px; text-align:center; }
+        .location-box p { color:#aaa; line-height:1.6; }
+        .location-actions { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:18px; }
+        .location-button.trail { background:#1a222d; color:#00d9ff; border:1px solid rgba(0,217,255,.35); }
+        .stats-grid { grid-template-columns:repeat(4,1fr); max-width:900px; margin:auto; }
+        .stat { text-align:center; background:#11171b; border:1px solid #202a30; border-radius:14px; padding:22px 10px; }
+        .stat strong { display:block; font-size:30px; color:#00d9ff; }.stat span { color:#aaa; font-size:13px; }
+        .map-fallback { text-align:center; padding:14px 8px 4px; }.map-fallback p { color:#999; font-size:13px; margin-bottom:9px; }.map-fallback a { display:inline-flex; align-items:center; gap:7px; padding:9px 15px; border-radius:20px; background:#00d9ff; color:#000; text-decoration:none; font-weight:800; font-size:13px; }
+        @media(max-width:700px){ .weather-grid,.before-grid,.stats-grid { grid-template-columns:repeat(2,1fr); }.forecast-grid { grid-template-columns:repeat(5,minmax(90px,1fr)); overflow-x:auto; }.trail-grid { grid-template-columns:1fr; }.weather-panel { padding:18px 12px; }.weather-item { padding:14px 8px; }.weather-value { font-size:19px; }.location-box { padding:22px 15px; } }
+</style>
 </head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-D7M9TQK891"></script>
@@ -901,6 +899,7 @@
   gtag('config', 'G-D7M9TQK891');
 </script>
 <body>
+
 <!-- NAVBAR -->
 <nav>
     <div class="logo">
@@ -920,9 +919,9 @@
         <a href="#inicio">Inicio</a>
         <a href="#videos">Videos</a>
         <a href="#fotos">Fotos</a>
-        <a href="#senderos">Senderos</a>
         <a href="#clima">Clima</a>
         <a href="https://www.google.com/maps?q=-32.90920,-68.91435" target="_blank" rel="noopener noreferrer">Ubicación</a>
+        <a href="#colaborar">Donaciones</a>
     </div>
 </nav>
 
@@ -935,7 +934,6 @@
     </div>
 </section>
 
-<!-- INTRO -->
 <!-- INTRO -->
 <section id="descubri">
     <div class="section-title">
@@ -1023,7 +1021,7 @@
         <!-- VIDEO 2 -->
         <div class="video-slide" data-youtube="oswZGrtjkkg">
             <div class="video-thumb-container">
-                <img loading="lazy" decoding="async" src="Filo del talco.png" alt="Filo del Talco" class="video-poster">
+                <img loading="lazy" decoding="async" src="Filo del Talco.png" alt="Filo del Talco" class="video-poster">
                 <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
             </div>
             <div class="video-info">
@@ -1198,7 +1196,7 @@
                 </div>
             </div>
         </div>
-       
+    </div>
 </section>
 
 <!-- CLIMA DETALLADO -->
@@ -1215,8 +1213,6 @@
     <div class="forecast-grid" id="forecastGrid"></div>
   </div>
 </section>
-
-
 
 <!-- SENDEROS DESTACADOS -->
 <section class="trail-section">
@@ -1239,8 +1235,6 @@
       <a class="location-button trail" href="https://www.trailforks.com/map/?nearby=1&activitytype=1&z=14.0&lat=-32.90920&lon=-68.91435&content=trails,labels,region,poi,directory,polygon,nst,eventpremium" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-map"></i> Ver senderos en Trailforks</a>
     </div>
   </div>
- 
-  
 </section>
 
 <!-- SENDEROS -->
@@ -1349,14 +1343,12 @@
         Estamos trabajando en la apertura y marcación de nuevos senderos y bajadas en el Dique Frías.
     </p>
 
-
-
 </div>
 
 <!-- FOOTER -->
 <footer>
     <!-- CÓDIGO PARA BOTÓN DE COLABORACIÓN MERCADO PAGO -->
-<div style="text-align: center; margin: 40px 0;">
+<div id="colaborar" style="text-align: center; margin: 40px 0;">
     <p style="color: #cccccc; font-size: 0.95rem; margin-bottom: 20px;">
         Si te sirve la página y querés ayudar a mantener <strong></strong> online, ¡podés colaborar!
     </p>
@@ -1387,7 +1379,7 @@
 </div>
     <p>© 2026 <strong>Dique Frías</strong></p>
     <p>Naturaleza · Montaña · Aventura</p>
-    <p>Desarrollado por <strong>Emanuel García</strong></p>
+    <p>Desarrollado por <strong>Emanuel García</strong>[cite: 6]</p>
     <p>
         <a href="https://wa.me/2614726854" target="_blank" class="whatsapp">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp
