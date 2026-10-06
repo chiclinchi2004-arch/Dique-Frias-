@@ -744,10 +744,10 @@
         }
 
         .footer-online-counter {
+            display: none;
             margin: 22px auto 0;
             padding-top: 18px;
             border-top: 1px solid rgba(0, 217, 255, 0.12);
-            display: flex;
             align-items: center;
             justify-content: center;
             gap: 9px;
@@ -1723,8 +1723,20 @@ if (mapOverlay && mapContainer) {
     const SUPABASE_URL = "https://jueozolaqvflqqenrusq.supabase.co";
     const SUPABASE_KEY = "sb_publishable_Jqh7y2ukschac5JVP33RiQ_rgeIGzlW";
     const contador = document.getElementById("contador-online");
+    const panel = document.querySelector(".footer-online-counter");
 
     if (!contador || !window.supabase) return;
+
+    // El contador sigue funcionando para todos, pero solo se muestra
+    // cuando se entra con el enlace privado: ?admin=fr786
+    const adminToken = "fr786";
+    const params = new URLSearchParams(window.location.search);
+    const esAdmin = params.get("admin") === adminToken;
+
+    if (esAdmin && panel) {
+        panel.style.display = "flex";
+        contador.textContent = "Conectando con visitantes...";
+    }
 
     const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
     const presenceKey = (window.crypto && crypto.randomUUID)
