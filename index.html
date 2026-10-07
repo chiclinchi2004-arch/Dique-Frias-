@@ -743,33 +743,6 @@
             transform: scale(1.05);
         }
 
-        .footer-online-counter {
-            display: none;
-            margin: 22px auto 0;
-            padding-top: 18px;
-            border-top: 1px solid rgba(0, 217, 255, 0.12);
-            align-items: center;
-            justify-content: center;
-            gap: 9px;
-            color: #aaa;
-            font-size: 14px;
-            max-width: 420px;
-        }
-
-        .footer-online-counter .online-dot {
-            width: 9px;
-            height: 9px;
-            flex: 0 0 9px;
-            border-radius: 50%;
-            background: #25d366;
-            box-shadow: 0 0 9px rgba(37, 211, 102, 0.8);
-            animation: onlinePulse 1.8s infinite;
-        }
-
-        .footer-online-counter strong {
-            color: #00d9ff;
-        }
-
         /* ---------- MOBILE ---------- */
 
         @media (max-width: 700px) {
@@ -955,37 +928,80 @@
             }
         }
     
+        /* ---------- NOVEDAD: NUEVA LINEA ---------- */
+        .new-line-section {
+            padding: 90px 7%;
+            background: radial-gradient(circle at center, rgba(0,217,255,.08), transparent 55%), #080b0d;
+        }
 
-        /* ---------- VISITANTES EN VIVO ---------- */
-        .online-counter-section {
-            padding: 35px 20px;
-            background: #080b0d;
+        .new-line-box {
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 35px;
+            border: 1px solid rgba(0,217,255,.35);
+            border-radius: 22px;
+            background: linear-gradient(135deg, rgba(0,217,255,.08), rgba(255,255,255,.025));
+            box-shadow: 0 0 35px rgba(0,217,255,.08);
             text-align: center;
         }
-        .online-counter {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 11px 18px;
-            border: 1px solid rgba(0,217,255,.25);
-            border-radius: 30px;
-            background: rgba(0,217,255,.06);
-            color: #fff;
-            font-size: 14px;
-            box-shadow: 0 0 18px rgba(0,217,255,.08);
+
+        .new-line-badge {
+            display: inline-block;
+            padding: 7px 16px;
+            margin-bottom: 15px;
+            border-radius: 999px;
+            background: #00d9ff;
+            color: #031014;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
         }
-        .online-dot {
-            width: 9px;
-            height: 9px;
-            border-radius: 50%;
-            background: #21e36b;
-            box-shadow: 0 0 10px rgba(33,227,107,.8);
-            animation: onlinePulse 1.5s infinite;
+
+        .new-line-box h3 {
+            margin-bottom: 12px;
+            font-size: clamp(25px, 4vw, 42px);
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
-        @keyframes onlinePulse {
-            0%,100% { opacity: 1; transform: scale(1); }
-            50% { opacity: .45; transform: scale(.78); }
+
+        .new-line-box h3 span { color: #00d9ff; }
+
+        .new-line-box p {
+            max-width: 760px;
+            margin: 0 auto 25px;
+            color: #d5d5d5;
+            line-height: 1.7;
         }
+
+        .new-line-youtube {
+            width: 100%;
+            max-width: 850px;
+            aspect-ratio: 16 / 9;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #000;
+            box-shadow: 0 15px 45px rgba(0,0,0,.45);
+        }
+
+        .new-line-youtube iframe {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: 0;
+        }
+
+        .new-line-note {
+            margin-top: 18px !important;
+            font-size: 13px;
+            color: #9aa5aa !important;
+        }
+
+        @media (max-width: 700px) {
+            .new-line-section { padding: 65px 5%; }
+            .new-line-box { padding: 24px 16px; }
+        }
+
 </style>
 </head>
 <!-- Google tag (gtag.js) -->
@@ -1047,6 +1063,8 @@
         </p>
     </div>
 </section>
+
+
 <!-- GALERÍA DE FOTOS -->
 <section class="photo-gallery-section" id="fotos">
 
@@ -1082,6 +1100,30 @@
         <div class="photo-counter" id="photoCounter"></div>
     </div>
 
+</section>
+
+<!-- NOVEDAD: NUEVA LINEA PALEADA EN EL FRIAS -->
+<section class="new-line-section" id="nueva-linea">
+    <div class="section-title">
+        <h2>🆕 Nueva <span>línea</span></h2>
+        <p>Una nueva bajada que se suma a los senderos del Dique Frías.</p>
+    </div>
+
+    <div class="new-line-box">
+        <div class="new-line-badge">🔥 NOVEDAD EN EL FRÍAS</div>
+        <p>Una nueva línea que estuvimos preparando y estrenando en el Dique Frías llamada La Chanchita.</p>
+        <!-- PEGÁ ACÁ SOLAMENTE EL ID DEL VIDEO DE YOUTUBE -->
+        <!-- Ejemplo: si YouTube dice youtube.com/watch?v=ABC123, el ID es ABC123 -->
+        <div class="new-line-youtube">
+            <iframe
+                src="https://www.youtube.com/embed/HnqCTD7aPqI"
+                title="Nueva línea del Dique Frías"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </div>
 </section>
 
 <!-- VIDEOS (CARRUSEL DE 13 VIDEOS CON YOUTUBE) -->
@@ -1426,11 +1468,6 @@
         <a href="https://wa.me/2614726854" target="_blank" class="whatsapp">
             <i class="fa-brands fa-whatsapp"></i> WhatsApp
         </a>
-
-    <div class="footer-online-counter" aria-live="polite">
-        <span class="online-dot" aria-hidden="true"></span>
-        <span id="contador-online">Conectando con visitantes...</span>
-    </div>
     </p>
     
 </footer>
@@ -1712,66 +1749,6 @@ if (mapOverlay && mapContainer) {
     });
 
     elementos.forEach(el => observer.observe(el));
-})();
-</script>
-
-
-<!-- SUPABASE: VISITANTES EN VIVO -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-(function () {
-    const SUPABASE_URL = "https://jueozolaqvflqqenrusq.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_Jqh7y2ukschac5JVP33RiQ_rgeIGzlW";
-    const contador = document.getElementById("contador-online");
-    const panel = document.querySelector(".footer-online-counter");
-
-    if (!contador || !window.supabase) return;
-
-    // El contador sigue funcionando para todos, pero solo se muestra
-    // cuando se entra con el enlace privado: ?admin=fr786
-    const adminToken = "fr786";
-    const params = new URLSearchParams(window.location.search);
-    const esAdmin = params.get("admin") === adminToken;
-
-    if (esAdmin && panel) {
-        panel.style.display = "flex";
-        contador.textContent = "Conectando con visitantes...";
-    }
-
-    const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-    const presenceKey = (window.crypto && crypto.randomUUID)
-        ? crypto.randomUUID()
-        : "visitante-" + Date.now() + "-" + Math.random().toString(36).slice(2);
-
-    const channel = client.channel("dique-frias-visitantes", {
-        config: { presence: { key: presenceKey } }
-    });
-
-    function actualizarContador() {
-        const state = channel.presenceState();
-        let total = 0;
-        Object.values(state).forEach(list => { total += list.length; });
-        contador.textContent = total === 1
-            ? "1 persona está viendo Dique Frías ahora"
-            : total + " personas están viendo Dique Frías ahora";
-    }
-
-    channel
-        .on("presence", { event: "sync" }, actualizarContador)
-        .on("presence", { event: "join" }, actualizarContador)
-        .on("presence", { event: "leave" }, actualizarContador)
-        .subscribe(async (status) => {
-            if (status === "SUBSCRIBED") {
-                await channel.track({
-                    online_at: new Date().toISOString()
-                });
-                actualizarContador();
-            } else if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
-                contador.textContent = "No se pudo conectar con el contador";
-                console.error("Supabase Realtime:", status);
-            }
-            console.log("Supabase Realtime:", status);
-        });
 })();
 </script>
 
