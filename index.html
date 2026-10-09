@@ -928,79 +928,20 @@
             }
         }
     
-        /* ---------- NOVEDAD: NUEVA LINEA ---------- */
         .new-line-section {
             padding: 90px 7%;
-            background: radial-gradient(circle at center, rgba(0,217,255,.08), transparent 55%), #080b0d;
+            background: #080b0d;
+        }
+        .new-line-carousel {
+            position: relative;
+        }
+        .new-line-carousel .video-slide {
+            cursor: pointer;
         }
 
-        .new-line-box {
-            max-width: 1050px;
-            margin: 0 auto;
-            padding: 35px;
-            border: 1px solid rgba(0,217,255,.35);
-            border-radius: 22px;
-            background: linear-gradient(135deg, rgba(0,217,255,.08), rgba(255,255,255,.025));
-            box-shadow: 0 0 35px rgba(0,217,255,.08);
-            text-align: center;
-        }
 
-        .new-line-badge {
-            display: inline-block;
-            padding: 7px 16px;
-            margin-bottom: 15px;
-            border-radius: 999px;
-            background: #00d9ff;
-            color: #031014;
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-        }
-
-        .new-line-box h3 {
-            margin-bottom: 12px;
-            font-size: clamp(25px, 4vw, 42px);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .new-line-box h3 span { color: #00d9ff; }
-
-        .new-line-box p {
-            max-width: 760px;
-            margin: 0 auto 25px;
-            color: #d5d5d5;
-            line-height: 1.7;
-        }
-
-        .new-line-youtube {
-            width: 100%;
-            max-width: 850px;
-            aspect-ratio: 16 / 9;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 16px;
-            background: #000;
-            box-shadow: 0 15px 45px rgba(0,0,0,.45);
-        }
-
-        .new-line-youtube iframe {
-            width: 100%;
-            height: 100%;
-            display: block;
-            border: 0;
-        }
-
-        .new-line-note {
-            margin-top: 18px !important;
-            font-size: 13px;
-            color: #9aa5aa !important;
-        }
-
-        @media (max-width: 700px) {
-            .new-line-section { padding: 65px 5%; }
-            .new-line-box { padding: 24px 16px; }
-        }
+        /* Ocultar el indicador ovalado del carrusel de Nueva Línea (hay un solo video). */
+        #newLineDots { display: none !important; }
 
 </style>
 </head>
@@ -1102,26 +1043,25 @@
 
 </section>
 
-<!-- NOVEDAD: NUEVA LINEA PALEADA EN EL FRIAS -->
+<!-- NUEVA LÍNEA PALEADA -->
 <section class="new-line-section" id="nueva-linea">
     <div class="section-title">
-        <h2>🆕 Nueva <span>línea</span></h2>
-        <p>Una nueva bajada que se suma a los senderos del Dique Frías.</p>
+        <h2>Nueva <span>línea paleada</span></h2>
+        <p>Un nuevo sendero creado por amigos del Frías.</p>
     </div>
-
-    <div class="new-line-box">
-        <div class="new-line-badge">🔥 NOVEDAD EN EL FRÍAS</div>
-        <p>Una nueva línea que estuvimos preparando y estrenando en el Dique Frías llamada La Chanchita.</p>
-        <!-- PEGÁ ACÁ SOLAMENTE EL ID DEL VIDEO DE YOUTUBE -->
-        <!-- Ejemplo: si YouTube dice youtube.com/watch?v=ABC123, el ID es ABC123 -->
-        <div class="new-line-youtube">
-            <iframe
-                src="https://www.youtube.com/embed/HnqCTD7aPqI"
-                title="Nueva línea del Dique Frías"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen>
-            </iframe>
+    <div class="video-carousel-container new-line-carousel" id="newLineCarousel">
+        <button class="carousel-btn prev" id="newLinePrev" aria-label="Video anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="carousel-btn next" id="newLineNext" aria-label="Video siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="carousel-dots" id="newLineDots"></div>
+        <div class="video-slide new-line-video-slide active" data-youtube="HnqCTD7aPqI">
+            <div class="video-thumb-container">
+                <img src="https://img.youtube.com/vi/HnqCTD7aPqI/hqdefault.jpg" alt="La Chanchita - nueva línea paleada" class="video-poster" loading="lazy">
+                <div class="play-overlay"><i class="fa-solid fa-circle-play"></i></div>
+            </div>
+            <div class="video-info">
+                <h3>La Chanchita</h3>
+                <p>Un nuevo sendero creado por amigos del Frías.</p>
+            </div>
         </div>
     </div>
 </section>
@@ -1503,7 +1443,7 @@ if (menuToggle && navLinks) {
 }
 
 // CARRUSEL DE VIDEOS
-const videoSlides = document.querySelectorAll(".video-slide");
+const videoSlides = document.querySelectorAll("#videoCarouselContainer .video-slide");
 const videoDotsContainer = document.getElementById("videoDots");
 let currentVideoSlide = 0;
 
@@ -1537,11 +1477,34 @@ if (videoSlides.length > 0) {
     }
 }
 
+// CARRUSEL DE NUEVA LÍNEA PALEADA (usa el mismo diseño y visor que Videos)
+const newLineSlides = document.querySelectorAll("#newLineCarousel .video-slide");
+const newLineDotsContainer = document.getElementById("newLineDots");
+let currentNewLineSlide = 0;
+if (newLineSlides.length > 0 && newLineDotsContainer) {
+    newLineSlides.forEach((_, i) => {
+        const dot = document.createElement("div");
+        dot.className = "dot" + (i === 0 ? " active" : "");
+        dot.addEventListener("click", () => goNewLine(i));
+        newLineDotsContainer.appendChild(dot);
+    });
+    const newLineDots = newLineDotsContainer.querySelectorAll(".dot");
+    function goNewLine(i) {
+        newLineSlides[currentNewLineSlide].classList.remove("active");
+        newLineDots[currentNewLineSlide]?.classList.remove("active");
+        currentNewLineSlide = (i + newLineSlides.length) % newLineSlides.length;
+        newLineSlides[currentNewLineSlide].classList.add("active");
+        newLineDots[currentNewLineSlide]?.classList.add("active");
+    }
+    document.getElementById("newLineNext").onclick = () => goNewLine(currentNewLineSlide + 1);
+    document.getElementById("newLinePrev").onclick = () => goNewLine(currentNewLineSlide - 1);
+}
+
 // VISOR MODAL DE YOUTUBE
 const videoViewer = document.getElementById("videoViewer");
 const youtubePlayer = document.getElementById("youtubePlayer");
 
-videoSlides.forEach(s => s.onclick = e => {
+[...videoSlides, ...newLineSlides].forEach(s => s.onclick = e => {
     if (e.target.closest("a")) return;
     let ytId = s.dataset.youtube;
     if (ytId) {
